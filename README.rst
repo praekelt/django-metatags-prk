@@ -14,7 +14,7 @@ Django Metatags
 Quick start
 -----------
 
-``django-metatags-prk`` is intended to be a standalone library, not a project, but it can indeed be run with::
+``django-metatags-prk`` is intended to be a standalone library, not a project, but it can be run with::
 
     - virtualenv ve
     - ./ve/bin/pip install -r metatags/tests/requirements/19.txt
@@ -27,9 +27,7 @@ Installation
 
 #. Install the contents of ``metatags/tests/requirements/19.txt`` to your Python environment.
 
-#. Add ``metatags`` to the ``INSTALLED_APPS`` setting.
-
-#. Add ``metatags.context_processors.slots`` to the context processors setting.
+#. Add ``metatags`` to the ``INSTALLED_APPS`` setting, at the end of the list.
 
 
 Content types
@@ -37,7 +35,7 @@ Content types
 
 URLMetaTag:
 
-* url: The URL or URL pattern where the slot should appear. This may be a regular expression.
+* url: The URL or URL pattern where the tag should appear. This may be a regular expression.
 
 * name: A predefined set of tag names.
 
@@ -46,7 +44,11 @@ URLMetaTag:
 
 ObjectMetaTag
 
-* xxxx
+* content_object: The object that this metatag will render for. This is a generic foreign key, and will be added as an inline.
+
+* name: A predefined set of tag names.
+
+* content: The tag content
 
 
 Usage

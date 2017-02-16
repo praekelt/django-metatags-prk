@@ -1,0 +1,7 @@
+{% for tag in tags %}
+    {% if tag.name == "title" %}
+        <title>{{ tag.content }}</title>
+    {% else %}
+        <meta name="{{ tag.name }}" content="{{ tag.content }}">
+    {% endif %}
+{% endfor %}
