@@ -34,7 +34,7 @@ def metatags(context, obj=None):
             tag_map[tag.name] = tag
 
     # Override tags with the object tags
-    if not obj and hasattr(context, "object"):
+    if not obj and "object" in context:
         obj = context["object"]
 
     if obj:
