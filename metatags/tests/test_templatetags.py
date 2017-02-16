@@ -18,11 +18,15 @@ class TemplateTagsTestCase(TestCase):
     @classmethod
     def setUpTestData(cls):
         super(TemplateTagsTestCase, cls).setUpTestData()
-        cls.tag = URLMetatag.objects.create(name="keywords", content="testa,testb", url="^/$")
+        cls.tag = URLMetatag.objects.create(
+            name="keywords",
+            content="testa,testb", url="^/$")
         cls.tag.sites = Site.objects.all()
         cls.tag.save()
 
     def test_default_tags(self):
         response = self.client.get("/")
         print response.content
-        self.assertContains(response, """<meta name="keywords" content="testa,testb">""")
+        self.assertContains(
+            response,
+            """<meta name="keywords" content="testa,testb">""")

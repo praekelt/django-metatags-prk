@@ -16,7 +16,8 @@ from metatags.models import URLMetatag, ContentMetatag
 register = template.Library()
 
 
-@register.inclusion_tag("metatags/inclusion_tags/metatags.html", takes_context=True)
+@register.inclusion_tag("metatags/inclusion_tags/metatags.html",
+                        takes_context=True)
 def metatags(context, obj=None):
     request = context["request"]
     # Get tags for the URL

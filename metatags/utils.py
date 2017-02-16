@@ -1,5 +1,6 @@
 from django.conf import settings
 
+
 def get_tag_name_choices():
     tag_dict = {
         "title": "Title",

@@ -13,8 +13,8 @@ from metatags.utils import get_tag_name_choices
 
 class Metatag(models.Model):
     name = models.CharField(
-        max_length = 100,
-        choices = get_tag_name_choices(),
+        max_length=100,
+        choices=get_tag_name_choices(),
         help_text="The name of the metatag."
     )
     content = models.CharField(
@@ -43,8 +43,7 @@ class URLMetatag(Metatag):
         help_text=_("""Where on the site this metatag will appear. This value
 may be a regular expression and may be very complex. A simple example
 is ^/about-us/, which means any URL starting with /about-us/ will have
-this metatag."""
-        ),
+this metatag."""),
     )
 
     def __unicode__(self):
