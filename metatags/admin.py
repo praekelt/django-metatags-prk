@@ -5,15 +5,13 @@ from django.contrib.contenttypes.admin import GenericTabularInline
 from metatags.models import URLMetatag, ContentMetatag
 
 
-# TODO: Be greedy
-# TODO: What happens on modelbase
-
 class MetatagInline(GenericTabularInline):
     model = ContentMetatag
     extra = 0
 
 
 admin.site.register(URLMetatag, admin.ModelAdmin)
+
 
 # Hook the metatag inlines into the admin for selected models
 included_models = []
