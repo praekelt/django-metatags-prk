@@ -52,9 +52,6 @@ class AdminInlineTestCase(TestCase):
         # Skip if we have any METATAGS settings
         if hasattr(settings, "METATAGS"):
             raise SkipTest()
-        if "inline_models" in settings.METATAGS \
-                or "exclude_inline_models" in settings.METATAGS:
-            raise SkipTest()
         self.client.login(username="editor", password="password")
         # No settings: inlines should be on dummymodel1
         response = self.client.get("/admin/tests/dummymodel1/add/")
