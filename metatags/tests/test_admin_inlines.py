@@ -81,3 +81,20 @@ class AdminInlineTestCase(TestCase):
         response = self.client.get("/admin/metatags/urlmetatag/add/")
         self.assertNotContains(response, "<h2>Content metatags</h2>")
 
+    def test_exclude_settings(self):
+        # Skip if we don't have the correct settings
+        if not hasattr(settigs, "METATAGS") \
+                or "exclude_inline_models" not in settings.METATAGS:
+            raise SkipTest()
+
+        self.client.login(username="editor", password="password")
+        # No settings: inlines should be on dummymodel1
+        response = self.client.get("/admin/tests/dummymodel1/add/")
+        self.assertContains(response, "<h2>Content metatags</h2>")
+        # and on dummy model 2
+        response = self.client.get("/admin/tests/dummymodel2/add/")
+        self.assertNotContains(response, "<h2>Content metatags</h2>")
+        # but NOT on urlmetatags. Those are always excluded
+        response = self.client.get("/admin/metatags/urlmetatag/add/")
+        self.assertNotContains(response, "<h2>Content metatags</h2>")
+
