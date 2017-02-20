@@ -1,4 +1,5 @@
 from django.conf.urls import url, include
+from django.contrib import admin
 from django.views.generic.base import TemplateView
 
 from metatags.tests.views import DummyModel1View
@@ -30,4 +31,11 @@ urlpatterns = [
         TemplateView.as_view(template_name="tests/bbb.html"),
         name="bbb"
     ),
+    url(
+        r"^admin/",
+        include(admin.site.urls)
+    ),
 ]
+
+
+admin.autodiscover()

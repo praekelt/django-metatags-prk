@@ -26,7 +26,6 @@ class TemplateTagsTestCase(TestCase):
 
     def test_default_tags(self):
         response = self.client.get("/")
-        print response.content
         self.assertContains(
             response,
             """<meta name="keywords" content="testa,testb">""")
