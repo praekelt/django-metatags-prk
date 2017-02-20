@@ -9,8 +9,8 @@ def get_tag_name_choices():
         }
 
     # Get extra tags from settings
-    if hasattr(settings, "METATAGS") and "TAG_OPTIONS" in settings.METATAGS:
-        tag_dict.update(settings.METATAGS["TAG_OPTIONS"])
+    if hasattr(settings, "METATAGS") and "tag_options" in settings.METATAGS:
+        tag_dict.update(settings.METATAGS["tag_options"])
 
     # Build the tag option tuples
     return [(name, tag_dict[name]) for name in sorted(tag_dict.keys())]
