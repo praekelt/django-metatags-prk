@@ -16,9 +16,23 @@ class MetatagInline(GenericTabularInline):
 admin.site.register(URLMetatag, admin.ModelAdmin)
 
 # Hook the metatag inlines into the admin for selected models
-if hasattr(settings, "METATAGS") and "inline_models" in settings.METATAGS:
-    for model, admin_model in admin.site._registry.items():
-        if "%s.%s" % (model._meta.app_label, model._meta.model_name) \
-                in settings.METATAGS["inline_models"] \
-                and MetatagInline not in admin_model.inlines:
-            admin_model.inlines = list(admin_model.inlines) + [MetatagInline]
+included_models = []
+excluded_models = []
+if hasattr(settings, "METATAGS"):
+    if "inline_models" in settings.METATAGS:
+        included_models = settings.METATAGS["inline_models"]
+
+    if "exclude_inline_models" in settings.METATAGS:
+        excluded_models = settings.METATAGS["exclude_inline_models"]
+
+for model, admin_model in admin.site._registry.items():
+    model_type = "%s.%s" % (model._meta.app_label, model._meta.model_name)
+
+    if included_models and model_type not in included_models:
+        continue
+
+    if model_type in excluded_models:
+        continue
+
+    if MetatagInline not in admin_model.inlines:
+        admin_model.inlines = list(admin_model.inlines) + [MetatagInline]
