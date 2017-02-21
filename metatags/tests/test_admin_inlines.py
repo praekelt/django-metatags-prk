@@ -83,7 +83,7 @@ class AdminInlineTestCase(TestCase):
 
     def test_exclude_settings(self):
         # Skip if we don't have the correct settings
-        if not hasattr(settigs, "METATAGS") \
+        if not hasattr(settings, "METATAGS") \
                 or "exclude_inline_models" not in settings.METATAGS:
             raise SkipTest()
 
