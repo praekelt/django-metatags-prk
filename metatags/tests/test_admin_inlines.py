@@ -11,12 +11,6 @@ from metatags.tests.models import DummyModel1, DummyModel2
 HOME_REGEX = "^" + reverse("home") + "$"
 
 
-# TODO: If content has a title field, override
-# TODO: Url pattern
-# TODO: On object
-# TODO: Extensibility of tag names
-
-
 class AdminInlineTestCase(TestCase):
     """ Test admin inlines being added to content on the fly.
 

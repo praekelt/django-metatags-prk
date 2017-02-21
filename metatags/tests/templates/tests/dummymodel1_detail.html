@@ -1,1 +1,5 @@
-I am DummyModel1 {{ object.title }}
+{% extends "base.html" %}
+{% load metatags_tags %}
+{% block metatags %}
+    {% metatags object title=object.title %}
+{% endblock %}

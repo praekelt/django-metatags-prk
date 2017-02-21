@@ -18,7 +18,7 @@ register = template.Library()
 
 @register.inclusion_tag("metatags/inclusion_tags/metatags.html",
                         takes_context=True)
-def metatags(context, obj=None):
+def metatags(context, obj=None, **kwargs):
     request = context["request"]
     # Get tags for the URL
     tags = list(URLMetatag.permitted.all())
@@ -31,7 +31,12 @@ def metatags(context, obj=None):
         if tag.name in tag_map:
             continue
         if re.search(r"%s" % tag.url, request_path):
-            tag_map[tag.name] = tag
+            tag_map[tag.name] = tag.content
+
+    # Overrides for specific fields presented as keyword args
+    for k,v in kwargs.items():
+        if v:
+            tag_map[k] = v
 
     # Override tags with the object tags
     if not obj and "object" in context:
@@ -44,6 +49,6 @@ def metatags(context, obj=None):
             object_id=obj.id
         )
         for tag in tags:
-            tag_map[tag.name] = tag
+            tag_map[tag.name] = tag.content
 
-    return {"tags": tag_map.values()}
+    return {"tags": [{"name": k, "content": v} for k, v in tag_map.items()]}
