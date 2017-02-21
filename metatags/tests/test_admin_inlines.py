@@ -49,8 +49,8 @@ class AdminInlineTestCase(TestCase):
         self.client.logout()
 
     def test_no_settings(self):
-        # Skip if we have any METATAGS settings
-        if hasattr(settings, "METATAGS"):
+        # Skip if we don't have the correct settings
+        if "test_no_settings" in settings.TEST_EXCLUDES:
             raise SkipTest()
 
         self.client.login(username="editor", password="password")
@@ -66,8 +66,7 @@ class AdminInlineTestCase(TestCase):
 
     def test_include_settings(self):
         # Skip if we don't have the correct settings
-        if not hasattr(settings, "METATAGS") \
-                or "inline_models" not in settings.METATAGS:
+        if "test_include_settings" in settings.TEST_EXCLUDES:
             raise SkipTest()
 
         self.client.login(username="editor", password="password")
@@ -83,8 +82,7 @@ class AdminInlineTestCase(TestCase):
 
     def test_exclude_settings(self):
         # Skip if we don't have the correct settings
-        if not hasattr(settings, "METATAGS") \
-                or "exclude_inline_models" not in settings.METATAGS:
+        if "test_exclude_settings" in settings.TEST_EXCLUDES:
             raise SkipTest()
 
         self.client.login(username="editor", password="password")

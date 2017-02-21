@@ -75,3 +75,8 @@ SITE_ID = 1
 STATIC_URL = "/static/"
 
 SECRET_KEY = "SECRET_KEY"
+
+TEST_EXCLUDES = [
+    "test_include_settings",
+    "test_exclude_settings",
+]
