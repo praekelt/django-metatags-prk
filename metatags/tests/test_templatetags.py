@@ -30,6 +30,17 @@ class TemplateTagsTestCase(TestCase):
             response,
             """<meta name="keywords" content="testa,testb">""")
 
+    def test_different_type_tags(self):
+        tag = URLMetatag.objects.create(
+            name="og:title",
+            content="ogtitle", url="^/$")
+        tag.sites = Site.objects.all()
+        tag.save()
+        response = self.client.get("/")
+        self.assertContains(
+            response,
+            """<meta property="og:title" content="ogtitle">""")
+
     def test_model_properties(self):
         response = self.client.get("/dummymodel1/1/")
         self.assertContains(
