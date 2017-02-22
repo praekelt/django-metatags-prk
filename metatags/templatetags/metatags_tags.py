@@ -15,15 +15,14 @@ from metatags.models import URLMetatag, ContentMetatag
 
 register = template.Library()
 
+# Some tags take the form <meta property= instead of <meta name=
 tag_name_map = {
-    "property": [
-        "og:title",
-        "og:type",
-        "og:image",
-        "og:url",
-        "og:description",
-        "fb:admins",
-    ],
+        "og:title": "property",
+        "og:type": "property",
+        "og:image": "property",
+        "og:url": "property",
+        "og:description": "property",
+        "fb:admins": "property",
 }
 
 
@@ -62,7 +61,14 @@ def metatags(context, obj=None, **kwargs):
         for tag in tags:
             tag_map[tag.name] = tag.content
 
+    tags = []
+    for k, v in tag_map.items():
+        if k in tag_name_map.keys():
+            tags.append({"name": k, "content": v, "type": tag_name_map[k]})
+        else:
+            tags.append({"name": k, "content": v, "type": "name"})
+
     return {
-        "tags": [{"name": k, "content": v} for k, v in tag_map.items()],
+        "tags": tags,
         "tag_name_map": tag_name_map
     }
