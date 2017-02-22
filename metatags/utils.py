@@ -24,5 +24,5 @@ def get_tag_name_choices():
         tag_dict.update(settings.METATAGS["tag_options"])
 
     # Build the tag option tuples
-    return [(name, tag_dict[name]) for name in sorted(tag_dict.keys()) \
+    return [(name, tag_dict[name]) for name in sorted(tag_dict.keys())
             if name and tag_dict[name]]

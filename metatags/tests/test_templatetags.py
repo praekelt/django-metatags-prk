@@ -24,7 +24,6 @@ class TemplateTagsTestCase(TestCase):
         cls.model1.sites = Site.objects.all()
         cls.model1.save()
 
-
     def test_default_tags(self):
         response = self.client.get("/")
         self.assertContains(

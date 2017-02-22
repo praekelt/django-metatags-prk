@@ -89,4 +89,3 @@ class AdminInlineTestCase(TestCase):
         # but NOT on urlmetatags. Those are always excluded
         response = self.client.get("/admin/metatags/urlmetatag/add/")
         self.assertNotContains(response, "<h2>Content metatags</h2>")
-

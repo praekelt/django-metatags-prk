@@ -26,6 +26,7 @@ tag_name_map = {
     ],
 }
 
+
 @register.inclusion_tag("metatags/inclusion_tags/metatags.html",
                         takes_context=True)
 def metatags(context, obj=None, **kwargs):
@@ -44,7 +45,7 @@ def metatags(context, obj=None, **kwargs):
             tag_map[tag.name] = tag.content
 
     # Overrides for specific fields presented as keyword args
-    for k,v in kwargs.items():
+    for k, v in kwargs.items():
         if v:
             tag_map[k] = v
 

@@ -21,7 +21,8 @@ if hasattr(settings, "METATAGS"):
         included_models = settings.METATAGS["inline_models"]
 
     if "exclude_inline_models" in settings.METATAGS:
-        excluded_models = list(settings.METATAGS["exclude_inline_models"]) + excluded_models
+        excluded_models = list(settings.METATAGS["exclude_inline_models"]) \
+            + excluded_models
 
 for model, admin_model in admin.site._registry.items():
     model_type = "%s.%s" % (model._meta.app_label, model._meta.model_name)
