@@ -1,6 +1,8 @@
 {% for tag in tags %}
     {% if tag.name == "title" %}
         <title>{{ tag.content }}</title>
+    {% elif tag.name in tag_name_map.property %}
+        <meta property="{{ tag.name }}" content="{{ tag.content }}">
     {% else %}
         <meta name="{{ tag.name }}" content="{{ tag.content }}">
     {% endif %}

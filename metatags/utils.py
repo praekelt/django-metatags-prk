@@ -6,6 +6,17 @@ def get_tag_name_choices():
         "title": "Title",
         "description": "Description",
         "keywords": "Keywords",
+        "og:title": "Open Graph Title (95 chars)",
+        "og:type": "Open Graph Type",
+        "og:image": "Open Graph Image",
+        "og:url": "Open Graph Url",
+        "og:description": "Open Graph Description",
+        "fb:admins": "Facebook Admins (FB ids)",
+        "twitter:card": "Twitter Card Type (default is summary)",
+        "twitter:url": "Twitter URL",
+        "twitter:title": "Twitter Title (70 chars)",
+        "twitter:description": "Twitter Description (200 chars)",
+        "twitter:image": "Twitter image",
         }
 
     # Get extra tags from settings

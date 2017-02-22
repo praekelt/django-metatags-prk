@@ -15,6 +15,16 @@ from metatags.models import URLMetatag, ContentMetatag
 
 register = template.Library()
 
+tag_name_map = {
+    "property": [
+        "og:title",
+        "og:type",
+        "og:image",
+        "og:url",
+        "og:description",
+        "fb:admins",
+    ],
+}
 
 @register.inclusion_tag("metatags/inclusion_tags/metatags.html",
                         takes_context=True)
@@ -51,4 +61,7 @@ def metatags(context, obj=None, **kwargs):
         for tag in tags:
             tag_map[tag.name] = tag.content
 
-    return {"tags": [{"name": k, "content": v} for k, v in tag_map.items()]}
+    return {
+        "tags": [{"name": k, "content": v} for k, v in tag_map.items()],
+        "tag_name_map": tag_name_map
+    }
