@@ -17,21 +17,6 @@ urlpatterns = [
         name="dummymodel1-detail"
     ),
     url(
-        r"^header/$",
-        TemplateView.as_view(template_name="tests/header.html"),
-        name="header"
-    ),
-    url(
-        r"^aaa/$",
-        TemplateView.as_view(template_name="tests/aaa.html"),
-        name="aaa"
-    ),
-    url(
-        r"^aaa/bbb/$",
-        TemplateView.as_view(template_name="tests/bbb.html"),
-        name="bbb"
-    ),
-    url(
         r"^admin/",
         include(admin.site.urls)
     ),
