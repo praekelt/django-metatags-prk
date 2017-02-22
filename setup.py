@@ -5,13 +5,13 @@ setup(
     name="django-metatags-prk",
     version="0.1",
     description="Page and object metatags for Django",
-    long_description = open("README.rst", "r").read() + open("AUTHORS.rst", "r").read() + open("CHANGELOG.rst", "r").read(),
+    long_description=open("README.rst", "r").read() + open("AUTHORS.rst", "r").read() + open("CHANGELOG.rst", "r").read(),
     author="Praekelt Consulting",
     author_email="dev@praekelt.com",
     license="BSD",
     url="https://github.com/praekelt/django-metatags-prk",
-    packages = find_packages(),
-    install_requires = [
+    packages=find_packages(),
+    install_requires=[
         "django",
         "django-crum",
     ],
